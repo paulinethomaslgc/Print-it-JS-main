@@ -36,3 +36,25 @@ function slider(i) {
 	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
 	bannerTitle.innerHTML = `${slides[i].tagLine}`
 }
+
+arrowLeft.addEventListener("click", () => {
+	i= i - 1
+	if (i < 0) {
+		i = i + (n)
+	} else if (i === n) {
+		i = (i - n)
+	}
+	slider(i)
+	}
+)
+
+arrowRight.addEventListener("click", () => {
+	i = i + 1
+	if (i < 0) {
+		i = i + n
+	}  else if (i === n) {
+		i = (i - n)
+	}
+	slider(i)
+}
+)
