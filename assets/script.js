@@ -53,22 +53,37 @@ selectedDot[i].classList.add("dot_selected")
 //créer les évênements clic déclenchant la fonction slider et le compteur
 arrowLeft.addEventListener("click", () => {
 	i= i - 1
-	if (i < 0) {
-		i = i + (n)
-	} else if (i === n) {
-		i = (i - n)
-	}
+		if (i < 0) {
+			i = i + (n)
+		} else if (i === n) {
+			i = (i - n)
+		}
 	slider(i)
+// ajoute ou enlève la classe dot_selected en fonction de la valeur de i, lors de l'évênement	
+	selectedDot[i].classList.add("dot_selected")
+		if (i < n-1 && i >=0) {
+			selectedDot[i+1].classList.remove("dot_selected")
+		} else if (i === n - 1) {
+			selectedDot[0].classList.remove("dot_selected")
+		}
 	}
 )
 
 arrowRight.addEventListener("click", () => {
 	i = i + 1
-	if (i < 0) {
-		i = i + n
-	}  else if (i === n) {
-		i = (i - n)
-	}
+		if (i < 0) {
+			i = i + n
+		}  else if (i === n) {
+			i = 0
+		}
+	// ajoute ou enlève la classe dot_selected en fonction de la valeur de i, lors de l'évênement
+	selectedDot[i].classList.add("dot_selected")
+		if (i < n && i > 0) {
+			selectedDot[i-1].classList.remove("dot_selected")
+		}
+		else if (i === 0) {
+			selectedDot[n - 1].classList.remove("dot_selected")
+		}
 	slider(i)
-}
+	}
 )
