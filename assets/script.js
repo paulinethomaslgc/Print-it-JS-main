@@ -31,3 +31,8 @@ bannerTitle.innerHTML = `${slides[i].tagLine}`
 
 const arrowLeft = document.querySelector('.arrow_left')
 const arrowRight = document.querySelector('.arrow_right')
+
+function slider(i) {
+	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
+	bannerTitle.innerHTML = `${slides[i].tagLine}`
+}
