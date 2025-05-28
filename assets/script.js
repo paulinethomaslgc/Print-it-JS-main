@@ -16,3 +16,18 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+i = 0
+
+let n = slides.length
+
+const bannerContent = document.getElementById("banner")
+let bannerImg = document.querySelector(".banner-img")
+
+
+let bannerTitle = document.querySelector("#banner p")
+bannerTitle.innerHTML = `${slides[i].tagLine}`
+
+
+const arrowLeft = document.querySelector('.arrow_left')
+const arrowRight = document.querySelector('.arrow_right')
