@@ -24,6 +24,10 @@ const slides = [
 	{
 		"image":"slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
+	},
+	{
+		"image":"slide5.jpg",
+		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	}
 ]
 
@@ -55,25 +59,26 @@ let selectedDot = document.querySelectorAll('.dot')
 // attribue par défaut, la class dot_selected à la span dot d'index i, i étant par défaut égal à zéro (ligne 31) :
 selectedDot[i].classList.add("dot_selected")
 
+
+/* Fonctions */
+// force i au retour à la valeur n - 1 s'il atteint -1 (dernière slide) et à la valeur zéro s'il atteint n 
+// (première slide), créant ainsi une boucle infinie vers la gouche comme vers la droite
+function infiniteCounter() {
+	if (i < 0) {
+			i = i + n
+		}  else if (i === n) {
+			i = 0
+		}
+		console.log(i);
+}
 // crée fonction modification de l'image et du titre en fonction de i :
 function slider(i) {
 	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
 	bannerTitle.innerHTML = `${slides[i].tagLine}`
 	selectedDot[i].classList.add("dot_selected")
 }
-/* Fonctions */
-// force i au retour à la valeur n - 1 s'il atteint -1 (dernière slide) et à la valeur zéro s'il atteint n 
-// (première slide), créant ainsi une boucle infinie vers la gouche comme vers la droite
-function infiniteCounter(i) {
-	if (i < 0) {
-			i = i + n
-		}  else if (i === n) {
-			i = 0
-		}
-}
-
 // ajoute ou enlève la classe dot_selected en fonction de la valeur de i :
-function activeDotLeft(i) {
+function activeDotLeft() {
 	if (i < n-1 && i >=0) {
 			selectedDot[i+1].classList.remove("dot_selected")
 		} else if (i === n - 1) {
@@ -81,7 +86,7 @@ function activeDotLeft(i) {
 		}
 }
 
-function activeDotRight(i) {
+function activeDotRight() {
 	if (i < n && i > 0) {
 			selectedDot[i-1].classList.remove("dot_selected")
 		}
@@ -94,6 +99,11 @@ function activeDotRight(i) {
 arrowLeft.addEventListener("click", () => {
 	i= i - 1
 	infiniteCounter(i)
+	/*if (i < 0) {
+			i = i + n
+		}  else if (i === n) {
+			i = 0
+		}*/
 	slider(i)
 	activeDotLeft(i)
 	}
@@ -102,6 +112,11 @@ arrowLeft.addEventListener("click", () => {
 arrowRight.addEventListener("click", () => {
 	i = i + 1
 	infiniteCounter(i)
+	/*if (i < 0) {
+			i = i + n
+		}  else if (i === n) {
+			i = 0
+		}*/
 	slider(i)
 	activeDotRight(i)
 	}
