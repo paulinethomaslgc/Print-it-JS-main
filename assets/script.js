@@ -1,3 +1,13 @@
+/***** Début code carrousel *****/
+
+/* tableau contenant les slides et les titres associés : pour rajouter un slide, il suffit d'enregistrer une image dans
+	le dossier source (../assets/images/slideshow/)(voir function slider, ligne 56, dans script.js), nommée sous forme 
+	"side[i].jpg" (ex : slide5.jpg), et de rajouter l'objet correspondant dans le tableau slides
+	(ex : {
+		"image":"slide5.jpg",
+		"tagLine":"Titre 5 <span> sous-titre 5 </span>"
+	}
+})*/
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -17,73 +27,83 @@ const slides = [
 	}
 ]
 
-// créer compteur i
+// crée variable compteur i
 i = 0
-// créer variable n, nombre d'éléments dans le tableau slides
+// crée variable n, nombre d'éléments dans le tableau slides
 let n = slides.length
 
-// Récupérer les éléments div, img et p du html
+// Récupére les éléments div, img et p du html
 const bannerContent = document.getElementById("banner")
 let bannerImg = document.querySelector(".banner-img")
-
-
 let bannerTitle = document.querySelector("#banner p")
-bannerTitle.innerHTML = `${slides[i].tagLine}`
-
 
 const arrowLeft = document.querySelector('.arrow_left')
 const arrowRight = document.querySelector('.arrow_right')
 
-//créer fonction modification de l'image et du titre en fonction de i
-function slider(i) {
-	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
-	bannerTitle.innerHTML = `${slides[i].tagLine}`
-}
-// créer le même nombre de span dots que de slides dans le html et leur attribuer la classe css .dot
+// crée le même nombre de span dots que de slides dans le html et leur attribue la classe css .dot
 for(let dot of slides) {
 	let dot = document.createElement("span")
 	const dotsContainer = document.querySelector(".dots")
 	dotsContainer.appendChild(dot)
 	dot.classList.add("dot")
 }
-//récupère les span avec la classe .dot dans la variable selectedDot
+
+// récupère les span avec la classe .dot dans la variable selectedDot
 let selectedDot = document.querySelectorAll('.dot')
-//attribue par défaut, la class dot_selected à la span dot d'index i, i étant par défaut égal à zéro
+
+// attribue par défaut, la class dot_selected à la span dot d'index i, i étant par défaut égal à zéro
 selectedDot[i].classList.add("dot_selected")
-//créer les évênements clic déclenchant la fonction slider et le compteur
-arrowLeft.addEventListener("click", () => {
-	i= i - 1
-		if (i < 0) {
-			i = i + (n)
-		} else if (i === n) {
-			i = (i - n)
-		}
-	slider(i)
-// ajoute ou enlève la classe dot_selected en fonction de la valeur de i, lors de l'évênement	
+
+// crée fonction modification de l'image et du titre en fonction de i
+function slider(i) {
+	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
+	bannerTitle.innerHTML = `${slides[i].tagLine}`
 	selectedDot[i].classList.add("dot_selected")
-		if (i < n-1 && i >=0) {
+}
+
+// ajoute ou enlève la classe dot_selected en fonction de la valeur de i
+function activeDotLeft(i) {
+	if (i < n-1 && i >=0) {
 			selectedDot[i+1].classList.remove("dot_selected")
 		} else if (i === n - 1) {
 			selectedDot[0].classList.remove("dot_selected")
 		}
-	}
-)
+}
 
-arrowRight.addEventListener("click", () => {
-	i = i + 1
-		if (i < 0) {
-			i = i + n
-		}  else if (i === n) {
-			i = 0
-		}
-	// ajoute ou enlève la classe dot_selected en fonction de la valeur de i, lors de l'évênement
-	selectedDot[i].classList.add("dot_selected")
-		if (i < n && i > 0) {
+function activeDotRight(i) {
+	if (i < n && i > 0) {
 			selectedDot[i-1].classList.remove("dot_selected")
 		}
 		else if (i === 0) {
 			selectedDot[n - 1].classList.remove("dot_selected")
 		}
+}
+
+//créer les évênements clic déclenchant les fonctions
+arrowLeft.addEventListener("click", () => {
+	i= i - 1
+	//infiniteCounter(i)
+	if (i < 0) {
+			i = i + (n)
+		} else if (i === n) {
+			i = 0
+		}
 	slider(i)
+	activeDotLeft(i)
 	}
 )
+
+arrowRight.addEventListener("click", () => {
+	i = i + 1
+	//infiniteCounter(i)
+		if (i < 0) {
+			i = i + n
+		}  else if (i === n) {
+			i = 0
+		}
+	slider(i)
+	activeDotRight(i)
+	}
+)
+
+/***** Fin code Carrousel *****/
