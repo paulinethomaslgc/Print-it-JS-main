@@ -1,6 +1,6 @@
 /***** Début code carrousel *****/
 
-/* tableau contenant les slides et les titres associés : pour rajouter un slide, il suffit d'enregistrer une image dans
+/* tableau contenant les slides et les titres associés : pour rajouter un slide, il faut enregistrer une image dans
 	le dossier source (../assets/images/slideshow/)(voir function slider, ligne 56, dans script.js), nommée sous forme 
 	"side[i].jpg" (ex : slide5.jpg), et de rajouter l'objet correspondant dans le tableau slides
 	(ex : {
@@ -55,7 +55,6 @@ let selectedDot = document.querySelectorAll('.dot')
 // attribue par défaut, la class dot_selected à la span dot d'index i, i étant par défaut égal à zéro (ligne 31) :
 selectedDot[i].classList.add("dot_selected")
 
-
 /* Fonctions */
 
 // force i au retour à la valeur n - 1 s'il atteint -1 (dernière slide) et à la valeur zéro s'il atteint n 
@@ -86,17 +85,17 @@ function activeDot() {
 // crée les évênements déclenchant les fonctions au clic sur les flêches gauche ou droite :
 arrowLeft.addEventListener("click", () => {
 	i= i - 1
-	infiniteCounter(i)
-	slider(i)
-	activeDot(i)
+	infiniteCounter()
+	slider()
+	activeDot()
 	}
 )
 
 arrowRight.addEventListener("click", () => {
 	i = i + 1
-	infiniteCounter(i)
-	slider(i)
-	activeDot(i)
+	infiniteCounter()
+	slider()
+	activeDot()
 	}
 )
 
