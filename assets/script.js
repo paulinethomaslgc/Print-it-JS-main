@@ -62,7 +62,7 @@ selectedDot[i].classList.add("dot_selected")
 // (première slide), créant ainsi une boucle infinie vers la gouche comme vers la droite :
 function infiniteCounter() {
 	if (i < 0) {
-			i = i + n
+			i = n - 1
 		}  else if (i === n) {
 			i = 0
 		}
