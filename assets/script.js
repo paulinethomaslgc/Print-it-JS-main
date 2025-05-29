@@ -24,10 +24,6 @@ const slides = [
 	{
 		"image":"slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
-	},
-	{
-		"image":"slide5.jpg",
-		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	}
 ]
 
@@ -61,23 +57,24 @@ selectedDot[i].classList.add("dot_selected")
 
 
 /* Fonctions */
+
 // force i au retour à la valeur n - 1 s'il atteint -1 (dernière slide) et à la valeur zéro s'il atteint n 
-// (première slide), créant ainsi une boucle infinie vers la gouche comme vers la droite
+// (première slide), créant ainsi une boucle infinie vers la gouche comme vers la droite :
 function infiniteCounter() {
 	if (i < 0) {
 			i = i + n
 		}  else if (i === n) {
 			i = 0
 		}
-		console.log(i);
 }
+
 // crée fonction modification de l'image et du titre en fonction de i :
 function slider(i) {
 	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
 	bannerTitle.innerHTML = `${slides[i].tagLine}`
 	selectedDot[i].classList.add("dot_selected")
 }
-// ajoute ou enlève la classe dot_selected en fonction de la valeur de i :
+// ajoute ou enlève la classe "dot_selected" au précédent span "dot" actif en fonction de la valeur de i :
 function activeDotLeft() {
 	if (i < n-1 && i >=0) {
 			selectedDot[i+1].classList.remove("dot_selected")
@@ -95,15 +92,11 @@ function activeDotRight() {
 		}
 }
 /* Déclencheur de fonctions */
-//créer les évênements déclenchant les fonctions au clic sur les flêches gauche ou droite
+
+// crée les évênements déclenchant les fonctions au clic sur les flêches gauche ou droite :
 arrowLeft.addEventListener("click", () => {
 	i= i - 1
 	infiniteCounter(i)
-	/*if (i < 0) {
-			i = i + n
-		}  else if (i === n) {
-			i = 0
-		}*/
 	slider(i)
 	activeDotLeft(i)
 	}
@@ -112,11 +105,6 @@ arrowLeft.addEventListener("click", () => {
 arrowRight.addEventListener("click", () => {
 	i = i + 1
 	infiniteCounter(i)
-	/*if (i < 0) {
-			i = i + n
-		}  else if (i === n) {
-			i = 0
-		}*/
 	slider(i)
 	activeDotRight(i)
 	}
