@@ -72,25 +72,15 @@ function infiniteCounter() {
 function slider() {
 	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
 	bannerTitle.innerHTML = `${slides[i].tagLine}`
-	selectedDot[i].classList.add("dot_selected")
 }
 // ajoute ou enlève la classe "dot_selected" au précédent span "dot" actif en fonction de la valeur de i :
-function inactiveDotLeft() {
-	if (i < n-1 && i >=0) {
-			selectedDot[i+1].classList.remove("dot_selected")
-		} else if (i === n - 1) {
-			selectedDot[0].classList.remove("dot_selected")
-		}
+function activeDot() {
+	selectedDot.forEach(dot => {
+	dot.classList.remove("dot_selected")
+	selectedDot[i].classList.add("dot_selected")
+	}) 
 }
 
-function inactiveDotRight() {
-	if (i < n && i > 0) {
-			selectedDot[i-1].classList.remove("dot_selected")
-		}
-		else if (i === 0) {
-			selectedDot[n - 1].classList.remove("dot_selected")
-		}
-}
 /* Déclencheur de fonctions */
 
 // crée les évênements déclenchant les fonctions au clic sur les flêches gauche ou droite :
@@ -98,7 +88,7 @@ arrowLeft.addEventListener("click", () => {
 	i= i - 1
 	infiniteCounter(i)
 	slider(i)
-	inactiveDotLeft(i)
+	activeDot(i)
 	}
 )
 
@@ -106,7 +96,7 @@ arrowRight.addEventListener("click", () => {
 	i = i + 1
 	infiniteCounter(i)
 	slider(i)
-	inactiveDotRight(i)
+	activeDot(i)
 	}
 )
 
