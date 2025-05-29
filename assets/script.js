@@ -69,13 +69,13 @@ function infiniteCounter() {
 }
 
 // crée fonction modification de l'image et du titre en fonction de i :
-function slider(i) {
+function slider() {
 	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
 	bannerTitle.innerHTML = `${slides[i].tagLine}`
 	selectedDot[i].classList.add("dot_selected")
 }
 // ajoute ou enlève la classe "dot_selected" au précédent span "dot" actif en fonction de la valeur de i :
-function activeDotLeft() {
+function inactiveDotLeft() {
 	if (i < n-1 && i >=0) {
 			selectedDot[i+1].classList.remove("dot_selected")
 		} else if (i === n - 1) {
@@ -83,7 +83,7 @@ function activeDotLeft() {
 		}
 }
 
-function activeDotRight() {
+function inactiveDotRight() {
 	if (i < n && i > 0) {
 			selectedDot[i-1].classList.remove("dot_selected")
 		}
@@ -98,7 +98,7 @@ arrowLeft.addEventListener("click", () => {
 	i= i - 1
 	infiniteCounter(i)
 	slider(i)
-	activeDotLeft(i)
+	inactiveDotLeft(i)
 	}
 )
 
@@ -106,7 +106,7 @@ arrowRight.addEventListener("click", () => {
 	i = i + 1
 	infiniteCounter(i)
 	slider(i)
-	activeDotRight(i)
+	inactiveDotRight(i)
 	}
 )
 
