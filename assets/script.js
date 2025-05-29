@@ -42,7 +42,7 @@ const arrowLeft = document.querySelector('.arrow_left')
 const arrowRight = document.querySelector('.arrow_right')
 
 // crée le même nombre de span dots que de slides dans le html et leur attribue la classe css ".dot" :
-for(let dot of slides) {
+for(let index of slides) {
 	let dot = document.createElement("span")
 	const dotsContainer = document.querySelector(".dots")
 	dotsContainer.appendChild(dot)
