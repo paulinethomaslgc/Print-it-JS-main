@@ -73,7 +73,7 @@ function slider() {
 	bannerImg.src = `../assets/images/slideshow/${slides[i].image}`
 	bannerTitle.innerHTML = `${slides[i].tagLine}`
 }
-// ajoute ou enlève la classe "dot_selected" au précédent span "dot" actif en fonction de la valeur de i :
+// enlève la  classe "dot_selected" à chaque élément span dot, puis la rajoute à l'élément span dot d'index i :
 function activeDot() {
 	selectedDot.forEach(dot => {
 	dot.classList.remove("dot_selected")
